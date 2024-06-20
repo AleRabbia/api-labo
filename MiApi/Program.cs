@@ -1,64 +1,16 @@
-//using MiApi.Context;
-//using Microsoft.EntityFrameworkCore;
-
-//var builder = WebApplication.CreateBuilder(args);
-
-//// Configurar servicios para la aplicación
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-//// Add services to the container.
-
-//builder.Services.AddControllers();
-//// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowReactApp",
-//        policy =>
-//        {
-//            policy.WithOrigins("http://localhost:3000", "http://localhost:8080", "http://localhost:5173")
-//                  .AllowAnyHeader()
-//                  .AllowAnyMethod();
-//        });
-//});
-
-//var app = builder.Build();
-
-//// Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
-
-//app.UseHttpsRedirection();
-
-//app.UseAuthorization();
-
-//app.UseCors("AllowReactApp");
-
-//app.MapControllers();
-
-//app.Run();
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MiApi.Context;
-using Microsoft.Extensions.Configuration;
-using SQLitePCL;
+using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Inicialización de SQLitePCL
-SQLitePCL.Batteries.Init();
+// Crear variable para la cadena de conexión de la DB
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// Configuración del contexto de la base de datos
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Registrar el servicio para la conexión
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlServer(connectionString)
+);
 
 // Configuración de servicios
 builder.Services.AddControllers();
@@ -71,10 +23,16 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000", "http://localhost:8080", "http://localhost:5173")
+            policy.WithOrigins("http://20.55.1.53:5000", "onetechapi-utn.ddns.net")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
+});
+
+// Configuración de encabezados reenviados
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 });
 
 var app = builder.Build();
@@ -85,6 +43,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Uso de encabezados reenviados antes de otros middlewares
+app.UseForwardedHeaders();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
