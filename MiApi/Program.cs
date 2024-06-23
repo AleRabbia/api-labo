@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MiApi.Context;
 using Microsoft.AspNetCore.HttpOverrides;
+using MiApi.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseSqlServer(connectionString)
 );
 
+// Registrar MercadoPagoService
+builder.Services.AddScoped<MercadoPagoService>(); // Registrar el servicio
+
 // Configuración de servicios
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -20,10 +24,10 @@ builder.Services.AddSwaggerGen();
 // Configuración CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp",
+    options.AddPolicy("AllowAnyOrigin",
         policy =>
         {
-            policy.WithOrigins("http://20.55.1.53:5000", "onetechapi-utn.ddns.net")
+            policy.AllowAnyOrigin()
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
@@ -49,7 +53,7 @@ app.UseForwardedHeaders();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.UseCors("AllowReactApp");
+app.UseCors("AllowAnyOrigin");
 
 app.MapControllers();
 

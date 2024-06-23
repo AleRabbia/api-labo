@@ -37,6 +37,20 @@ namespace MiApi.Controllers
             return producto;
         }
 
+        [HttpGet("categoria/{categoria}")]
+        public async Task<ActionResult<IEnumerable<Producto>>> GetProductosPorCategoria(string categoria)
+        {
+            var productos = await _context.Productos
+                                          .Where(p => p.category == categoria)
+                                          .ToListAsync();
+            if (productos == null || !productos.Any())
+            {
+                return NotFound();
+            }
+
+            return productos;
+        }
+
         [HttpPost]
         public async Task<ActionResult<Producto>> CrearProducto([FromBody] Producto nuevoProducto)
         {

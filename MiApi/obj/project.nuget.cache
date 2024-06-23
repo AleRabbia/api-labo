@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "h1zXROmo5xZTw8FxAAGEmDmUBTPFyfC7ONYSUy+AluAihstqEkYCKFMkBr+GkFqsDI+fFfmbn+lHXrdlomdOzQ==",
+  "dgSpecHash": "iLqpS+SntgLJSmzAYv/JeA9EDO7JTRKTkkNKiU7KVFAq01LV9vS/U4h38GJupu+kCZ4X/zIzJy91qQNvhBpSeQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\marce\\TUP3\\Programacion3\\api-labo\\MiApi\\MiApi.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,7 @@
     "C:\\Users\\marce\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\marce\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\marce\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\marce\\.nuget\\packages\\mercadopago-sdk\\2.3.8\\mercadopago-sdk.2.3.8.nupkg.sha512",
     "C:\\Users\\marce\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
     "C:\\Users\\marce\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\marce\\.nuget\\packages\\microsoft.build\\17.8.3\\microsoft.build.17.8.3.nupkg.sha512",

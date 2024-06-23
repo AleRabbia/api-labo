@@ -378,3 +378,4 @@ C:\Users\marce\TUP3\Programacion3\api-labo\MiApi\obj\Debug\net8.0\refint\MiApi.d
 C:\Users\marce\TUP3\Programacion3\api-labo\MiApi\obj\Debug\net8.0\MiApi.pdb
 C:\Users\marce\TUP3\Programacion3\api-labo\MiApi\obj\Debug\net8.0\MiApi.genruntimeconfig.cache
 C:\Users\marce\TUP3\Programacion3\api-labo\MiApi\obj\Debug\net8.0\ref\MiApi.dll
+C:\Users\marce\TUP3\Programacion3\api-labo\MiApi\bin\Debug\net8.0\MercadoPago.dll
