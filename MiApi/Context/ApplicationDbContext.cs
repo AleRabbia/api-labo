@@ -12,7 +12,9 @@ namespace MiApi.Context
 
         public DbSet<Producto> Productos { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Compra> Compras { get; set; }
+        public DbSet<DetalleCompra> DetallesCompra { get; set; }
 
-       
+
     }
 }
